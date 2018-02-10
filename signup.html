@@ -1,0 +1,375 @@
+<DOCTYPE! html>
+<html>
+	<head>
+		<title>Sign Up </title>
+	<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/font-awesome.css">
+		<link rel="stylesheet" href="css/w3.css">
+		<link rel="stylesheet" href="mystyle.css">
+		<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+		<script src="js/jquery.js"></script> 
+		<script src="js/bootstrap.js"></script>
+		<script>
+		  // Initialize Firebase
+		  var config = {
+			apiKey: "AIzaSyDhWRe5kz4RPJ_VKu_Pg9wZvijw26c88V8",
+			authDomain: "thread-4cc4e.firebaseapp.com",
+			databaseURL: "https://thread-4cc4e.firebaseio.com",
+			storageBucket: "thread-4cc4e.appspot.com",
+			messagingSenderId: "518414892005"
+		  };
+		  firebase.initializeApp(config);
+		</script>
+		<script src="my.js"></script>
+		<script src="js/countries.js"></script>
+	</head>
+	
+	<style>
+	body  {
+				background-image: url('backgroun_signup.png');
+				background-attachment: fixed;
+			}
+		
+		.form-group{
+		font-family: arial;
+			width: auto;
+			margin: 0 auto;
+			padding: 20px;
+			box-sizing:border-box;
+			margin: 25px 0;
+		}
+		
+		.form-group label{
+			font-size: 18px;
+		}
+		
+		.form-group input{
+		width: 100%;
+		display: block;
+		padding: 10px;
+		box-sizing:border-box;
+		}
+		
+		.form-group select{
+		width: 100%;
+		display: block;
+		padding: 10px;
+		margin: 0px;
+		box-sizing:border-box;
+		}
+		
+	  .form-group2{
+		font-family: arial;
+			width: auto;
+			margin: 0 auto;
+			padding: 20px;
+			box-sizing:border-box;
+			margin:  0;
+			
+		}
+		
+		.form-group2 label{
+			font-size: 18px;
+	
+		}
+		
+		.form-group2 input{
+		display: block;
+		padding: 5px;
+		box-sizing:border-box;
+		float:right;
+		}
+		
+		.form-group2 a{
+		display: block;
+		padding: 10px;
+		}
+		
+		.form-group2 select{
+		display: block;
+		padding: 10px;
+		margin: 0px;
+		box-sizing:border-box;
+		}
+
+		
+		
+	</style>
+	<body>
+	<header>
+		<div class=" navbar-fixed-top" >
+					<div class="container-fluid w3-hide-medium w3-hide-small  w3-white w3-card-4" >
+						<div class="navbar-header">
+							<!--<div class="w3-closenav w3-left w3-hover-text-grey"  onclick="w3_close()"><span class="fa fa-bars fa-2x"></span></div>-->
+							<a href="#" class="navbar-brand w3-xlarge"  style="padding-left:10%;"><b>Nexus</b></a>
+						</div>
+						<ul class="nav navbar-nav navbar-right" style="padding-right: 4%;">
+							<li><a href="features1.html" class="w3-hover-text-grey" style="background: none;" id="feature">Features</a></li>
+							<li><a href="tour1.html" class="w3-hover-text-grey" style="background: none;">Tour</a></li>
+							<li><a href="pricing1.html" class="w3-hover-text-grey" style="background: none;">Pricing</a></li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle w3-hover-text-grey" style="background: none;" data-toggle="dropdown">
+							<li class="w3-opennav" onclick="open_sign()" id="openNav"><span class="fa fa-bars fa-2x "></span> </li><ul>
+							<!--<ul class="dropdown-menu">
+								<li><a href="#sign" data-toggle="modal">Sign In</a></li>
+								<li class="divider"></li>
+								<li><a href="#signup" data-toggle="modal" data-backdrop="static" data-keyboard="false">Sign Up</a></li>
+							</li>
+							</ul>-->
+						</ul>
+					</div>
+		<nav class="w3-sidenav w3-white w3-card-4 w3-padding-48" style="display:none;z-index:3;width:160px;right: 0" id="mySidenav_sign">
+							  <a href="javascript:void(0)" 
+							  onclick="close_sign()"
+							  class="w3-closenav w3-large w3-hover-text-grey" style="padding-top: 50px;padding-bottom: 50px;background: none;">Close &times;</a>
+							  <a href="index.html" class="w3-hover-text-grey w3-padding-8" style="padding-top: 50px;background: none;" >Home</a>
+							  <a href="#features_home" class="w3-hover-text-grey w3-padding-8" style="padding-top: 50px;background: none;" >Features</a>
+							  <a href="#tour_home" class="w3-hover-text-grey w3-padding-8" style="background: none;" >Tour</a>
+							  <a href="#pricing_home" class="w3-hover-text-grey w3-padding-8" style="background: none;" >Pricing</a>
+							  <hr>
+							  <a href="signup.html" class="w3-hover-text-grey w3-padding-8" style="background:none;" >Sign Up</a>
+							  <a href="#sign" class="w3-hover-text-grey w3-padding-8" data-toggle="modal" data-keyboard="false" style="background: none;" >Sign In</a>
+		</nav>	
+		</div>
+		<div class="w3-container w3-top  w3-hide-large w3-white w3-xlarge w3-padding-16">
+						<span class="w3-left w3-padding"><b>Nexus</b></span>
+		<a href="javascript:void(0)" class="w3-right w3-btn w3-white" onclick="open_sign()">☰</a>
+					</div>
+			</div>
+
+		</div>	
+	</header>
+	<div class="w3-main" style="margin-left:0;margin-top:47px;">
+		<div class="w3-container w3-padding-24" style="margin-top: 15%;margin-bottom: 30px;margin-left: 20%;margin-right: 20%;background:  #fff ;">
+			<p style="text-align: right; color: grey;">Step 1 of 4</p><br>
+			<h2 class="w3-center" style="padding-top: 10%">Get Started by filling your details</h2><br>
+			<form target="_blank" >
+				<div class="form-group">
+					<label for="intitude_name">Name of Organisation * </label>
+					<input type="text" id="intitude_name" required >
+				</div>
+				<div class="form-group">
+					<label for="intitude_email">Organisation E-mail </label>
+					<input type="email" id="intitude_email" required>
+				</div>
+				<div class="form-group">
+					<label for="intitude_contact">Organisation Contact Number *</label>
+					<input type="tel" min="1" max="1000000000" id="intitude_contact" >
+				</div>
+				<div class="form-group">
+					<label for="org" >Type of Organisation *</label>
+					<!--<input list="org" id="o" required>
+					<datalist id="org">
+					 <option>College</option>
+					 <option>College</option>
+					 <option>College</option>
+					</datalist>-->
+					<select id ="org" name="org" class = "form-group" required>
+					  <option value="Private">Private</option>
+					  <option value="Education">Education</option>
+					  <option value="Medical">Medical</option>
+					  <option value="Government">Government</option>
+					  <option value="Startup">Startup</option>
+					  <option value="IT">IT</option>
+					  <option value="Bank">Bank</option>
+					</select>
+				</div>
+				
+				<div class = "form-group">
+					<label for="country" >Select Your Country *</label>
+					<select id="country" name ="country" class = "form-group"  required></select>
+				</div>
+				<div class = "form-group">
+					<label for="state" >Select Your State *</label>
+					<select name ="state" id ="state" class = "form-group" required></select>
+				</div>
+				<!--<div class="form-group">
+					<label for="country" >Select your country </label>
+					<input list="country" required>
+					<datalist id="country">
+					 <option>india</option>
+					</datalist>
+				</div>-->
+				<div class="form-group">
+					<label for="admin_mail">Admin E-mail * </label>
+					<input type="text" id="admin_mail" required >
+				</div>
+				<div class="form-group">
+					<label for="admin_contact">Admin Contact no. * </label>
+					<input type="tel" id="admin_contact" required >
+				</div>
+				<div>
+					<input type="button" class=" w3-btn w3-padding-medium w3-large w3-round w3-green  w3-hover-opacity-on " style="" onclick="open_detail_tab();" value="Proceed" type="submit">
+				</div>
+		</form>
+		
+						<div id="detail_tab" class=" w3-display-container  w3-padding-large "  style="display: none;">
+									<hr class="w3-hr">
+									<p style="text-align: right; color: grey;">Step 2 of 4</p>
+									<h2 class="w3-center" style="padding-top: 10%">Your details</h2><br>
+										<label class="col-md-4">Institute Name:</label>
+										<label class="col-lg-4" id = "inst_name" ></label>
+									<br><br>
+										<label class="col-md-4">Institude E-mail:</label>
+										<label class="col-lg-4" id = "inst_email"></label>
+									<br><br>
+										<label class="col-md-4">Institude Contact No.: </label>
+										<label class="col-lg-4" id = "inst_contact"></label>
+									<br><br>
+										<label class="col-md-4">Organisation type: </label>
+										<label class="col-lg-4" id = "inst_type"></label>
+									<br><br>
+										<label class="col-md-4">Country: </label>
+										<label class="col-lg-4" id = "inst_country"></label>
+									<br><br>
+										<label class="col-md-4">State: </label>
+										<label class="col-lg-4" id = "inst_state"></label>
+									<br><br>
+										<label class="col-md-4">Admin E-mail: </label>
+										<label class="col-lg-4" id = "admin_email"></label>
+									<br><br>
+										<label class="col-md-4">Admin Contact No.: </label>
+										<label id = "admin_num"></label>
+									<br><br>
+									<input type="button" value="Proceed" class=" w3-btn w3-padding-medium w3-large w3-round w3-green  w3-hover-opacity-on " style="align:left;padding-left: 10px;padding-right: 10px;" onclick="open_IDs_tab();generateRan();"></input>
+						</div>
+						<div id="Ids_tab" class=" w3-display-container  w3-padding-large "  style="display: none;">
+									<hr class="w3-hr">
+									<p style="text-align: right; color: grey;">Step 3 of 4</p>
+									<h2 class="w3-center" style="padding-top: 10%">Your Ids has been generated</h2><br>
+									<div class = "">
+										<label for = "inst_id" style="margin-right: 10px;">Institute ID      : </label>
+										<input type="text" id = "inst_id" required >
+									</div><br>
+									<div class = "">
+										<label for = "inst_admin_id" style="margin-right: 30px;">Admin ID      : </label>
+										<input type="text" id = "inst_admin_id" required >
+									</div><br>
+									<div class = "">
+										<label for = "inst_h_id" style="margin-right: 45px">King ID      : </label>
+										<input type="text" id = "inst_h_id" required >
+									</div><br>
+									<div class = "">
+										<label for = "inst_m_id" style="margin-right: 20px">Veteran ID      : </label>
+										<input type="text" id = "inst_m_id" required >
+									</div><br>
+									<div class = "">
+										<label for = "inst_l_id" style="margin-right: 45px">Base ID      : </label>
+										<input type="text" id = "inst_l_id" required >
+									</div><br>
+									<br><br><div class="clearfix"></div>
+									<div class="">
+										<input type="button" class=" w3-btn w3-padding-medium w3-large w3-round w3-green  w3-hover-opacity-on " style="padding-left: 10px;padding-right: 10px;" onclick="open_price_tab(); trail();" value="Proceed"></input>
+									</div>
+						</div>
+						<div id="pric_tab" class=" w3-container w3-padding-large" style="display:none;">
+								<hr class="w3-hr">
+								<p style="text-align: right; color: grey;">Step 4 of 4</p>
+								<h2 class="w3-center" style="padding-top: 10%">select your plan</h2><br>
+								<div class="w3-third w3-margin-bottom">
+									<ul class="w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow" id = "trail">
+									  <li class="w3-black w3-xlarge w3-padding-32">Trial</li>
+									  <li class="w3-padding-16">Upto 1000 users</li>
+									  <li class="w3-padding-16">Photography</li>
+									  <li class="w3-padding-16">
+										<h2>$ 0</h2>
+										<span class="w3-opacity">per month</span>
+									  </li>
+									  <li class="w3-light-grey w3-padding-24">
+										<button class="w3-btn w3-white w3-padding-large w3-hover-black" onclick = "trail(); upload();">Get it</button>
+									  </li>
+									</ul>
+								  </div>
+							
+							<div class="w3-row-padding" style="margin:0 -16px" >
+								  <div class="w3-third w3-margin-bottom">
+									<ul class="w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow" id = "medium">
+									  <li class="w3-black w3-xlarge w3-padding-32">Medium</li>
+									  <li class="w3-padding-16">Upto 1000 users</li>
+									  <li class="w3-padding-16">Photography</li>
+									  <li class="w3-padding-16">
+										<h2>$ 25</h2>
+										<span class="w3-opacity">per month</span>
+									  </li>
+									  <li class="w3-light-grey w3-padding-24">
+										<button class="w3-btn w3-white w3-padding-large w3-hover-black" onclick = "medium()">Get it</button>
+									  </li>
+									</ul>
+								  </div>
+								<div class="w3-row-padding " style="margin:0 -16px" >
+								  <div class="w3-third w3-margin-bottom">
+									<ul class="w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow" id = "large">
+									  <li class="w3-black w3-xlarge w3-padding-32 ">Large</li>
+									  <li class="w3-padding-16">User can be altered</li>
+									  <li class="w3-padding-16">Mail Support</li>
+									  <li class="w3-padding-16">
+										<h2>$ 50</h2>
+										<span class="w3-opacity">per month</span>
+									  </li>
+									  <li class="w3-light-grey w3-padding-24">
+										<button class="w3-btn w3-white w3-padding-large w3-hover-black" onclick = "large()">Get it</button>
+									  </li>
+									</ul>
+								  </div>
+								</div>
+							</div><br>
+							<button id = "validate" class=" w3-btn w3-padding-medium w3-large w3-round w3-green  w3-hover-opacity-on" style="align:left;padding-left: 10px;padding-right: 10px;" onclick = "upload()">Validate</button>
+							<a href="logged.html" id = "next" class=" w3-btn w3-padding-medium w3-large w3-round w3-green  w3-hover-opacity-on " style="align:left;padding-left: 10px;padding-right: 10px; " >Done</a>
+						</div>
+		</div>
+	</div>
+		<!--Sign In(modal)-->
+	<div class="container">
+		<div class="modal fade" id="sign">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h4 align="center">Sign In<div class="close" data-dismiss="modal">&times;</div></h4>
+					<div class="modal-body">
+						<form  action="logged.html"  method="GET">
+							<p><input class="w3-input w3-padding-10 w3-border"  type="text"  name="user" value="01" required></p><br>
+							<p><input class="w3-input w3-padding-10 w3-border"  type="password"  name="pass" value="01" required></p><br>
+							<p align="center"><input class="w3-btn w3-padding-large w3-large w3-round w3-#cccccc w3-opacity w3-hover-opacity-off "  type="submit" value="Sign In" onclick="validate();"></h4></p>
+					  </form>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+	</div>
+		<footer class="w3-container w3-light-grey w3-padding-large" style="">
+			<div class="" style="font-size:30px;float:left;padding-top:50px;padding-left: 50px;">
+				<strong>NEXUS</strong><br>
+			</div>
+			<ul class="" style="float:left;padding-top: 20px;padding-left:150px;padding-right: 150px;font-weight:normal; list-style-type:none; font-size:15px; background:none;">
+				<li class="w3-padding-4"><a href="#about" class="w3-text-grey" style="text-decoration:none;background: none;" >About</a></li>
+				<li class="w3-padding-4"><a href="#features_home" class="w3-text-grey " style="text-decoration:none;background: none;" >Careers</a></li>
+				<li class="w3-padding-4"><a href="#tour_home" class="w3-text-grey " style="text-decoration:none;background: none;" >Terms</a></li>
+				<li class="w3-padding-4"><a href="#pricing_home" class="w3-text-grey" style="text-decoration:none;background: none;" >Privacy</a></li>
+			</ul>
+			<ul class=" " style="font-weight:normal;padding-top: 20px; list-style-type:none; font-size:15px; background:none;">
+				<li class="w3-padding-4"><a href="index.html" class="w3-text-grey" style="text-decoration:none;background: none;" >Home</a></li>
+				<li class="w3-padding-4"><a href="#features_home" class="w3-text-grey " style="text-decoration:none;padding-top: 2px;background: none;" >Features</a></li>
+				<li class="w3-padding-4"><a href="#tour_home" class="w3-text-grey " style="text-decoration:none;background: none;" >Tour</a></li>
+				<li class="w3-padding-4"><a href="#pricing_home" class="w3-text-grey" style="text-decoration:none;background: none;" >Pricing</a></li>
+			</ul>
+			<div class="w3-right w3-large">
+				  <i class="fa fa-facebook-official fa-lg w3-hover-text-indigo"></i>
+				  <i class="fa fa-instagram fa-lg w3-hover-text-purple"></i>
+				  <i class="fa fa-snapchat fa-lg w3-hover-text-yellow"></i>
+				  <i class="fa fa-pinterest-p fa-lg w3-hover-text-red"></i>
+				  <i class="fa fa-twitter fa-lg w3-hover-text-light-blue"></i>
+				  <i class="fa fa-linkedin fa-lg w3-hover-text-indigo"></i>
+				
+			</div>
+			
+		</footer>
+	
+		
+	<script>
+		populateCountries("country", "state");	
+	</script>
+	</body>
+</html>

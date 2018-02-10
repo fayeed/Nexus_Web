@@ -1,0 +1,101 @@
+/*@font-face {
+  font-family: MyWebFont;
+  src: url('Gafata.ttf');
+   
+}*/
+ body,h1,h3,h3,h4, form,footer,.w3-main{font-family:"Arial", sans-serif;}
+nav{
+	font-family: "Raleway", sans-serif;
+}
+ p{
+	color: grey;
+ }
+.w3-table th{
+	padding: 4px 10px 4px 10px;
+}
+p{line-height: ;
+	font-size: 18px;
+
+}
+
+body, html {height: 100%}
+
+.bgimg {
+	background-image: url('im2.gif');
+	min-height: 100%;
+	background-position: center;
+	background-size: cover;
+	 background-attachment: fixed;
+}
+
+/*used for middle Heading (logged)*/
+.cont{
+	background:black;
+	min-height: 43%;
+	background-size: cover;
+	
+}
+
+/*for features,etc*/
+.myimg {
+	margin-top: 5%;
+	width: 280px;
+	height: 240px;
+	
+}
+
+/*used for nav*/
+.container-fluid{
+
+text-align: left;
+height: 25%;
+
+}
+
+.mydefault{
+text-align: left;
+margin: 10px;
+height: 25%;
+width: 60%;
+}
+
+.pricing{
+text-align: center;
+padding: 8%;
+}
+
+/*form*/
+.form-group{
+margin: 20px 0;
+}
+
+.form-group label{
+	font-size: 14px;
+}
+
+.form-group input{
+width: 100%;
+display: block;
+padding: 5px;
+box-sizing:border-box;
+}
+
+.form-group1{
+margin: 20px 0;
+}
+
+.form-group1 label,input{
+
+	vertical-align: baseline;
+	font-size: 14px;
+}
+
+
+.group{
+	
+}
+.w3-sidenav{
+	background-color: #f2f2f2;
+}
+
+

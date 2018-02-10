@@ -1,0 +1,144 @@
+
+<DOCTYPE! html>
+<html>
+	<head>
+		<title>Sign Up </title>
+	<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/font-awesome.css">
+		<link rel="stylesheet" href="css/w3.css">
+		<link rel="stylesheet" href="mystyle.css">
+		<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+		<script src="js/jquery.js"></script> 
+		<script src="js/bootstrap.js"></script>
+		
+	<body>
+				<div class="container-fluid "  style="padding: auto; margin: 10%;">
+					<nav class="navbar w3-card-2">
+						<ul class="nav navbar-nav ">
+							<li><a href="#BHOOO" class="w3-hover-light-grey" style="margin-left: 2px" onclick="openTab(event, 'price_tab'); load_Pricing();">
+							  <div class="tablink w3-padding" >BHOOO</div>
+							</a></li>
+							<li><a href="#Discussionthread" class="w3-hover-light-grey" style="margin-left: 2px" onclick="openTab(event, 'Id_tab'); load_Ids();">
+							  <div class="tablink w3-padding" style="">Discussion thread</div>
+							</a></li>
+							<li><a href="#Profile" class="w3-hover-light-grey" style="margin-left: 2px" onclick="openTab(event, 'Id_tab'); load_Ids();">
+							  <div class="tablink w3-padding" style="">Profile</div>
+							</a></li>
+							<li><a href="#report" class="w3-hover-light-grey" onclick="openTab(event, 'details_tab'); load_Detail();">
+							  <div class="tablink w3-padding" style="">Report</div>
+							</a></li>
+							<li><a href="#strike" class="w3-hover-light-grey" style="margin-left: 2px" onclick="openTab(event, 'Id_tab'); load_Ids();">
+							  <div class="tablink w3-padding" style="">Strike</div>
+							</a></li>
+						</ul>
+					</nav>
+						<div id="BHOOO" class="cit container-fluid w3-padding-large w3-border w3-round "  style="margin: 10%;">
+
+						</div>
+						<div id="Discussionthread" class="cit w3-container" style="display:none">
+							
+						</div>
+						<div id="Profile" class="cit w3-container" style="display:none">
+							<img></img><br>
+							<div class="">
+							<label>Name</label>
+							<label></label>
+							</div>
+							<div class="">
+							<label>LinkedIn:</label>
+							<label></label>
+							</div>
+							<div class="">
+							<label>Job discription</label><br>
+							<label></label><br>
+							</div>
+							<div class="">
+							<label>Bio</label>
+							<label></label>
+							</div>
+							<div class="">
+							<label>Phone no.</label>
+							<label></label>
+							</div>
+							<div class="">
+							<label>Email</label>
+							<label></label>
+							</div>
+						</div>
+						<div id="report" class="cit w3-container" style="display:none">
+							
+						</div>
+						<div id="strike" class="cit w3-container" style="display:none">
+							
+						</div>				
+						<!--<div id="strike_in" class="cit w3-container" style="display:none">								
+						<div class="">
+							<label>Name</label>
+							<label></label>
+						</div>
+						<div class="">
+							<label>Date</label>
+							<label></label>
+						</div>
+						<div class="">
+							<label>Discription</label>
+							<label></label>
+						</div>
+						</div>
+						<div id="discussion_in" class="cit w3-container" style="display:none">								
+						<div class="">
+							<label>Name</label>
+							<label></label>
+						</div>
+						<div class="">
+							<label>Date</label>
+							<label></label>
+						</div>
+						<div class="">
+							<label>Discription</label>
+							<label></label>
+						</div>
+						</div>
+						<div id="BHOOO_in" class="cit w3-container" style="display:none">								
+						<div class="">
+							<label>Name</label>
+							<label></label>
+						</div>
+						<div class="">
+							<label>Date</label>
+							<label></label>
+						</div>
+						<div class="">
+							<label>Discription</label>
+							<label></label>
+						</div>
+						</div>
+						<div id="report_in" class="cit w3-container" style="display:none">								
+						<div class="">
+							<label>Name</label>
+							<label></label>
+						</div>
+						<div class="">
+							<label>Date</label>
+							<label></label>
+						</div>
+						<div class="">
+							<label>Discription</label>
+							<label></label>
+						</div>
+						<div class="">
+							<label>Category</label>
+							<label></label>
+						</div>
+						</div>
+						-->	
+							
+			</div>
+		
+		
+		</div>
+	</body>
+</html>
+</html>

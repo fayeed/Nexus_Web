@@ -1,0 +1,1598 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<html>
+	<head>
+		<title>Nexus | LoggedIn</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/font-awesome.css">
+		<link rel="stylesheet" href="css/w3.css">
+				<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+		<link rel="stylesheet" href="mystyle.css">
+		<script src="js/jquery.js"></script> 
+		<script src="js/bootstrap.js"></script>
+		<script src="js/countries.js"></script>
+		
+		<script src="my.js"></script>
+			<script >
+			var s = window.location.search;
+			function getUrlVars() {
+				var vars = {};
+				var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+				vars[key] = value;
+				});
+				return vars;
+			}
+			var first = getUrlVars()["user"];
+			var second = getUrlVars()["pass"];
+			console.log(""+first);
+			var config = {
+                apiKey: "AIzaSyC9dYqL-aF-bX5sSiGo0SEUF4bSurTlDhc",
+                authDomain: "nexus-f4ba4.firebaseapp.com",
+                databaseURL: "https://nexus-f4ba4.firebaseio.com",
+                storageBucket: "nexus-f4ba4.appspot.com",
+                messagingSenderId: "422388981328"
+		  };
+		  firebase.initializeApp(config);
+		  
+					//active user
+					var daily_user = [];
+					var weekly_user = [];
+					var monthly_user = [];
+					//bhhoo user
+					var daily_bhhoo_user = [];
+					var weekly_bhhoo_user = [];
+					var monthly_bhhoo_user = [];
+					//chat user
+					var daily_chat_user = [];
+					var weekly_chat_user = [];
+					var monthly_chat_user = [];
+					//discussion user
+					var daily_discussion_user = [];
+					var weekly_discussion_user = [];
+					var monthly_discussion_user = [];
+					//profile user
+					var daily_profile_user = [];
+					var weekly_profile_user = [];
+					var monthly_profile_user = [];
+					//news user
+					var daily_news_user = [];
+					var weekly_news_user = [];
+					var monthly_news_user = [];
+					//bhhoo posted
+					var daily_bhhoo_posted = [];
+					var weekly_bhhoo_posted = [];
+					var monthly_bhhoo_posted = [];
+					//bhhoo comment posted
+					var daily_bhhoo_comment_posted = [];
+					var weekly_bhhoo_comment_posted = [];
+					var monthly_bhhoo_comment_posted = [];
+					//discussion posted
+					var daily_discussion_posted = [];
+					var weekly_discussion_posted = [];
+					var monthly_discussion_posted = [];
+					//discussion comment posted
+					var daily_discussion_comment_posted = [];
+					var weekly_discussion_comment_posted = [];
+					var monthly_discussion_comment_posted = [];
+					//news posted
+					var daily_news_posted = [];
+					var weekly_news_posted = [];
+					var monthly_news_posted = [];
+					//profile searched
+					var daily_profile_searched = [];
+					var weekly_profile_searched = [];
+					var monthly_profile_searched = [];
+					var daily_date = [];
+					
+					window.onload = function () {
+					var a = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+					var b = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+					//var i = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+					//var j = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+					var i = 1, j = 1;
+					
+					var ab= firebase.database().ref().child(first).child("Admin").child("Graph");
+			
+					  ab.limitToLast(7).on('value', function(snapshot) {
+					  snapshot.forEach(function(childSnapshot) {
+							//if(childSnapshot.val()!==null)
+							daily_user.push(childSnapshot.val().dailyActiveUsers);
+							daily_news_user.push(childSnapshot.val().dailyNewsUsers);
+							daily_bhhoo_user.push(childSnapshot.val().dailyBhhoooUsers);
+							daily_discussion_user.push(childSnapshot.val().dailyDiscussionUsers);
+							daily_chat_user.push(childSnapshot.val().dailyChatUsers);
+							daily_profile_user.push(childSnapshot.val().dailyProfileUsers);
+							daily_bhhoo_posted.push(childSnapshot.val().dailyBhhhoooPosted);
+							daily_bhhoo_comment_posted.push(childSnapshot.val().dailyBhhhoooCommentsPosted);
+							daily_discussion_posted.push(childSnapshot.val().dailyDiscussionPosted);
+							daily_discussion_comment_posted.push(childSnapshot.val().dailyDiscussionCommentsPosted);
+							daily_news_posted.push(childSnapshot.val().dailyNewsposted);
+							daily_profile_searched.push(childSnapshot.val().dailyProfileSearched);
+							//p = childSnapshot.val().dailyActiveUsers;
+							daily_date.push(childSnapshot.val().date);
+							if(i <= 7){
+								b[0] = b[0] + childSnapshot.val().dailyActiveUsers;
+								b[1] = b[1] + childSnapshot.val().dailyNewsUsers;
+								b[2] = b[2] + childSnapshot.val().dailyBhhoooUsers;
+								b[3] = b[3] + childSnapshot.val().dailyDiscussionUsers;
+								b[4] = b[4] + childSnapshot.val().dailyChatUsers;
+								b[5] = b[5] + childSnapshot.val().dailyProfileUsers;
+								b[6] = b[6] + childSnapshot.val().dailyBhhhoooPosted;
+								b[7] = b[7] + childSnapshot.val().dailyBhhhoooCommentsPosted;
+								b[8] = b[8] + childSnapshot.val().dailyDiscussionPosted;
+								b[9] = b[9] + childSnapshot.val().dailyDiscussionCommentsPosted;
+								b[10] = b[10] + childSnapshot.val().dailyNewsposted;
+								b[11] = b[11] + childSnapshot.val().dailyProfileSearched;
+								i++;
+							}else{
+								i = 1;
+							}
+							
+							if(j <= 7){
+								a[0] = a[0] + childSnapshot.val().dailyActiveUsers;
+								a[1] = a[1] + childSnapshot.val().dailyNewsUsers;
+								a[2] = a[2] + childSnapshot.val().dailyBhhoooUsers;
+								a[3] = a[3] + childSnapshot.val().dailyDiscussionUsers;
+								a[4] = a[4] + childSnapshot.val().dailyChatUsers;
+								a[5] = a[5] + childSnapshot.val().dailyProfileUsers;
+								a[6] = a[6] + childSnapshot.val().dailyBhhhoooPosted;
+								a[7] = a[7] + childSnapshot.val().dailyBhhhoooCommentsPosted;
+								a[8] = a[8] + childSnapshot.val().dailyDiscussionPosted;
+								a[9] = a[9] + childSnapshot.val().dailyDiscussionCommentsPosted;
+								a[10] = a[10] + childSnapshot.val().dailyNewsposted;
+								a[11] = a[11] + childSnapshot.val().dailyProfileSearched;
+								j++;
+							}else{
+								j = 1;
+							}
+							weekly_user.push(b[0]);
+							weekly_news_user.push(b[1]);
+							weekly_bhhoo_user.push(b[2]);
+							weekly_discussion_user.push(b[3]);
+							weekly_chat_user.push(b[4]);
+							weekly_profile_user.push(b[5]);
+							weekly_bhhoo_posted.push(b[6]);
+							weekly_bhhoo_comment_posted.push(b[7]);
+							weekly_discussion_posted.push(b[8]);
+							weekly_discussion_comment_posted.push(b[9]);
+							weekly_news_posted.push(b[10]);
+							weekly_profile_searched.push(b[11]);
+							monthly_user.push(a[0]);
+							monthly_news_user.push(a[1]);
+							monthly_bhhoo_user.push(a[2]);
+							monthly_discussion_user.push(a[3]);
+							monthly_chat_user.push(a[4]);
+							monthly_profile_user.push(a[5]);
+							monthly_bhhoo_posted.push(a[6]);
+							monthly_bhhoo_comment_posted.push(a[7]);
+							monthly_discussion_posted.push(a[8]);
+							monthly_discussion_comment_posted.push(a[9]);
+							monthly_news_posted.push(a[10]);
+							monthly_profile_searched.push(a[11]);
+							console.log("" +daily_date[0]);
+						});
+						
+						var chart1 = new CanvasJS.Chart("chartContainer1", {
+							title: {
+								text: "Daily to yearly Active Users"
+							},animationEnabled: true,
+							legend: {
+								cursor: "pointer",
+								itemclick: function (e) {
+									if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+										e.dataSeries.visible = false;
+									} else {
+										e.dataSeries.visible = true;
+									}
+
+									e.chart.render();
+								}
+							},
+							data: [{
+								showInLegend: true,
+								name: "Yearly",
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: daily_user[0] },
+									{ x: daily_date[1], y: daily_user[1] },
+									{ x: daily_date[2], y: daily_user[2] },
+									{ x: daily_date[3], y: daily_user[3] },
+									{ x: daily_date[4], y: daily_user[4] },
+									{ x: daily_date[5], y: daily_user[5] },
+									{ x: daily_date[6], y: daily_user[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: weekly_user[0] },
+									{ x: daily_date[1], y: weekly_user[1] },
+									{ x: daily_date[2], y: weekly_user[2] },
+									{ x: daily_date[3], y: weekly_user[3] },
+									{ x: daily_date[4], y: weekly_user[4] },
+									{ x: daily_date[5], y: weekly_user[5] },
+									{ x: daily_date[6], y: weekly_user[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: monthly_user[0] },
+									{ x: daily_date[1], y: monthly_user[1] },
+									{ x: daily_date[2], y: monthly_user[2] },
+									{ x: daily_date[3], y: monthly_user[3] },
+									{ x: daily_date[4], y: monthly_user[4] },
+									{ x: daily_date[5], y: monthly_user[5] },
+									{ x: daily_date[6], y: monthly_user[6] }
+								]
+							}]
+						});
+						
+						var chart2 = new CanvasJS.Chart("chartContainer2", {
+							title: {
+								text: "Daily to yearly Bhhhooo Users"
+							},animationEnabled: true,
+							legend: {
+								cursor: "pointer",
+								itemclick: function (e) {
+									if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+										e.dataSeries.visible = false;
+									} else {
+										e.dataSeries.visible = true;
+									}
+
+									e.chart.render();
+								}
+							},
+							data: [{
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: daily_bhhoo_user[0] },
+									{ x: daily_date[1], y: daily_bhhoo_user[1] },
+									{ x: daily_date[2], y: daily_bhhoo_user[2] },
+									{ x: daily_date[3], y: daily_bhhoo_user[3] },
+									{ x: daily_date[4], y: daily_bhhoo_user[4] },
+									{ x: daily_date[5], y: daily_bhhoo_user[5] },
+									{ x: daily_date[6], y: daily_bhhoo_user[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: weekly_bhhoo_user[0] },
+									{ x: daily_date[1], y: weekly_bhhoo_user[1] },
+									{ x: daily_date[2], y: weekly_bhhoo_user[2] },
+									{ x: daily_date[3], y: weekly_bhhoo_user[3] },
+									{ x: daily_date[4], y: weekly_bhhoo_user[4] },
+									{ x: daily_date[5], y: weekly_bhhoo_user[5] },
+									{ x: daily_date[6], y: weekly_bhhoo_user[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: monthly_bhhoo_user[0] },
+									{ x: daily_date[1], y: monthly_bhhoo_user[1] },
+									{ x: daily_date[2], y: monthly_bhhoo_user[2] },
+									{ x: daily_date[3], y: monthly_bhhoo_user[3] },
+									{ x: daily_date[4], y: monthly_bhhoo_user[4] },
+									{ x: daily_date[5], y: monthly_bhhoo_user[5] },
+									{ x: daily_date[6], y: monthly_bhhoo_user[6] }
+								]
+							}]
+						});
+						
+						var chart3 = new CanvasJS.Chart("chartContainer3", {
+							title: {
+								text: "Daily to yearly Chat Users"
+							},animationEnabled: true,
+							legend: {
+								cursor: "pointer",
+								itemclick: function (e) {
+									if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+										e.dataSeries.visible = false;
+									} else {
+										e.dataSeries.visible = true;
+									}
+
+									e.chart.render();
+								}
+							},
+							data: [{
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: daily_chat_user[0] },
+									{ x: daily_date[1], y: daily_chat_user[1] },
+									{ x: daily_date[2], y: daily_chat_user[2] },
+									{ x: daily_date[3], y: daily_chat_user[3] },
+									{ x: daily_date[4], y: daily_chat_user[4] },
+									{ x: daily_date[5], y: daily_chat_user[5] },
+									{ x: daily_date[6], y: daily_chat_user[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: weekly_chat_user[0] },
+									{ x: daily_date[1], y: weekly_chat_user[1] },
+									{ x: daily_date[2], y: weekly_chat_user[2] },
+									{ x: daily_date[3], y: weekly_chat_user[3] },
+									{ x: daily_date[4], y: weekly_chat_user[4] },
+									{ x: daily_date[5], y: weekly_chat_user[5] },
+									{ x: daily_date[6], y: weekly_chat_user[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: monthly_chat_user[0] },
+									{ x: daily_date[1], y: monthly_chat_user[1] },
+									{ x: daily_date[2], y: monthly_chat_user[2] },
+									{ x: daily_date[3], y: monthly_chat_user[3] },
+									{ x: daily_date[4], y: monthly_chat_user[4] },
+									{ x: daily_date[5], y: monthly_chat_user[5] },
+									{ x: daily_date[6], y: monthly_chat_user[6] }
+								]
+							}]
+						});
+						
+						var chart4 = new CanvasJS.Chart("chartContainer4", {
+							title: {
+								text: "Daily to yearly Profile Users"
+							},animationEnabled: true,
+							legend: {
+								cursor: "pointer",
+								itemclick: function (e) {
+									if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+										e.dataSeries.visible = false;
+									} else {
+										e.dataSeries.visible = true;
+									}
+
+									e.chart.render();
+								}
+							},
+							data: [{
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: daily_profile_user[0] },
+									{ x: daily_date[1], y: daily_profile_user[1] },
+									{ x: daily_date[2], y: daily_profile_user[2] },
+									{ x: daily_date[3], y: daily_profile_user[3] },
+									{ x: daily_date[4], y: daily_profile_user[4] },
+									{ x: daily_date[5], y: daily_profile_user[5] },
+									{ x: daily_date[6], y: daily_profile_user[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: weekly_profile_user[0] },
+									{ x: daily_date[1], y: weekly_profile_user[1] },
+									{ x: daily_date[2], y: weekly_profile_user[2] },
+									{ x: daily_date[3], y: weekly_profile_user[3] },
+									{ x: daily_date[4], y: weekly_profile_user[4] },
+									{ x: daily_date[5], y: weekly_profile_user[5] },
+									{ x: daily_date[6], y: weekly_profile_user[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: monthly_profile_user[0] },
+									{ x: daily_date[1], y: monthly_profile_user[1] },
+									{ x: daily_date[2], y: monthly_profile_user[2] },
+									{ x: daily_date[3], y: monthly_profile_user[3] },
+									{ x: daily_date[4], y: monthly_profile_user[4] },
+									{ x: daily_date[5], y: monthly_profile_user[5] },
+									{ x: daily_date[6], y: monthly_profile_user[6] }
+								]
+							}]
+						});
+						
+						var chart5 = new CanvasJS.Chart("chartContainer5", {
+							title: {
+								text: "Daily to yearly News Users"
+							},animationEnabled: true,
+							legend: {
+								cursor: "pointer",
+								itemclick: function (e) {
+									if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+										e.dataSeries.visible = false;
+									} else {
+										e.dataSeries.visible = true;
+									}
+
+									e.chart.render();
+								}
+							},
+							data: [{
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: daily_news_user[0] },
+									{ x: daily_date[1], y: daily_news_user[1] },
+									{ x: daily_date[2], y: daily_news_user[2] },
+									{ x: daily_date[3], y: daily_news_user[3] },
+									{ x: daily_date[4], y: daily_news_user[4] },
+									{ x: daily_date[5], y: daily_news_user[5] },
+									{ x: daily_date[6], y: daily_news_user[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: weekly_news_user[0] },
+									{ x: daily_date[1], y: weekly_news_user[1] },
+									{ x: daily_date[2], y: weekly_news_user[2] },
+									{ x: daily_date[3], y: weekly_news_user[3] },
+									{ x: daily_date[4], y: weekly_news_user[4] },
+									{ x: daily_date[5], y: weekly_news_user[5] },
+									{ x: daily_date[6], y: weekly_news_user[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: monthly_news_user[0] },
+									{ x: daily_date[1], y: monthly_news_user[1] },
+									{ x: daily_date[2], y: monthly_news_user[2] },
+									{ x: daily_date[3], y: monthly_news_user[3] },
+									{ x: daily_date[4], y: monthly_news_user[4] },
+									{ x: daily_date[5], y: monthly_news_user[5] },
+									{ x: daily_date[6], y: monthly_news_user[6] }
+								]
+							}]
+						});
+						
+						var chart6 = new CanvasJS.Chart("chartContainer6", {
+							title: {
+								text: "Daily to yearly Discussion Users"
+							},animationEnabled: true,
+							legend: {
+								cursor: "pointer",
+								itemclick: function (e) {
+									if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+										e.dataSeries.visible = false;
+									} else {
+										e.dataSeries.visible = true;
+									}
+
+									e.chart.render();
+								}
+							},
+							data: [{
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: daily_discussion_user[0] },
+									{ x: daily_date[1], y: daily_discussion_user[1] },
+									{ x: daily_date[2], y: daily_discussion_user[2] },
+									{ x: daily_date[3], y: daily_discussion_user[3] },
+									{ x: daily_date[4], y: daily_discussion_user[4] },
+									{ x: daily_date[5], y: daily_discussion_user[5] },
+									{ x: daily_date[6], y: daily_discussion_user[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: weekly_discussion_user[0] },
+									{ x: daily_date[1], y: weekly_discussion_user[1] },
+									{ x: daily_date[2], y: weekly_discussion_user[2] },
+									{ x: daily_date[3], y: weekly_discussion_user[3] },
+									{ x: daily_date[4], y: weekly_discussion_user[4] },
+									{ x: daily_date[5], y: weekly_discussion_user[5] },
+									{ x: daily_date[6], y: weekly_discussion_user[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: monthly_discussion_user[0] },
+									{ x: daily_date[1], y: monthly_discussion_user[1] },
+									{ x: daily_date[2], y: monthly_discussion_user[2] },
+									{ x: daily_date[3], y: monthly_discussion_user[3] },
+									{ x: daily_date[4], y: monthly_discussion_user[4] },
+									{ x: daily_date[5], y: monthly_discussion_user[5] },
+									{ x: daily_date[6], y: monthly_discussion_user[6] }
+								]
+							}]
+						});
+						
+						var chart7 = new CanvasJS.Chart("chartContainer7", {
+							title: {
+								text: "Daily to yearly Bhhooo Posted Users"
+							},animationEnabled: true,
+							legend: {
+								cursor: "pointer",
+								itemclick: function (e) {
+									if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+										e.dataSeries.visible = false;
+									} else {
+										e.dataSeries.visible = true;
+									}
+
+									e.chart.render();
+								}
+							},
+							data: [{
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: daily_bhhoo_posted[0] },
+									{ x: daily_date[1], y: daily_bhhoo_posted[1] },
+									{ x: daily_date[2], y: daily_bhhoo_posted[2] },
+									{ x: daily_date[3], y: daily_bhhoo_posted[3] },
+									{ x: daily_date[4], y: daily_bhhoo_posted[4] },
+									{ x: daily_date[5], y: daily_bhhoo_posted[5] },
+									{ x: daily_date[6], y: daily_bhhoo_posted[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: weekly_bhhoo_posted[0] },
+									{ x: daily_date[1], y: weekly_bhhoo_posted[1] },
+									{ x: daily_date[2], y: weekly_bhhoo_posted[2] },
+									{ x: daily_date[3], y: weekly_bhhoo_posted[3] },
+									{ x: daily_date[4], y: weekly_bhhoo_posted[4] },
+									{ x: daily_date[5], y: weekly_bhhoo_posted[5] },
+									{ x: daily_date[6], y: weekly_bhhoo_posted[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: monthly_bhhoo_posted[0] },
+									{ x: daily_date[1], y: monthly_bhhoo_posted[1] },
+									{ x: daily_date[2], y: monthly_bhhoo_posted[2] },
+									{ x: daily_date[3], y: monthly_bhhoo_posted[3] },
+									{ x: daily_date[4], y: monthly_bhhoo_posted[4] },
+									{ x: daily_date[5], y: monthly_bhhoo_posted[5] },
+									{ x: daily_date[6], y: monthly_bhhoo_posted[6] }
+								]
+							}]
+						});
+						
+						var chart8 = new CanvasJS.Chart("chartContainer8", {
+							title: {
+								text: "Daily to yearly Bhhhooo Comment Posted Users"
+							},animationEnabled: true,
+							legend: {
+								cursor: "pointer",
+								itemclick: function (e) {
+									if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+										e.dataSeries.visible = false;
+									} else {
+										e.dataSeries.visible = true;
+									}
+
+									e.chart.render();
+								}
+							},
+							data: [{
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: daily_bhhoo_comment_posted[0] },
+									{ x: daily_date[1], y: daily_bhhoo_comment_posted[1] },
+									{ x: daily_date[2], y: daily_bhhoo_comment_posted[2] },
+									{ x: daily_date[3], y: daily_bhhoo_comment_posted[3] },
+									{ x: daily_date[4], y: daily_bhhoo_comment_posted[4] },
+									{ x: daily_date[5], y: daily_bhhoo_comment_posted[5] },
+									{ x: daily_date[6], y: daily_bhhoo_comment_posted[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: weekly_bhhoo_comment_posted[0] },
+									{ x: daily_date[1], y: weekly_bhhoo_comment_posted[1] },
+									{ x: daily_date[2], y: weekly_bhhoo_comment_posted[2] },
+									{ x: daily_date[3], y: weekly_bhhoo_comment_posted[3] },
+									{ x: daily_date[4], y: weekly_bhhoo_comment_posted[4] },
+									{ x: daily_date[5], y: weekly_bhhoo_comment_posted[5] },
+									{ x: daily_date[6], y: weekly_bhhoo_comment_posted[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: monthly_bhhoo_comment_posted[0] },
+									{ x: daily_date[1], y: monthly_bhhoo_comment_posted[1] },
+									{ x: daily_date[2], y: monthly_bhhoo_comment_posted[2] },
+									{ x: daily_date[3], y: monthly_bhhoo_comment_posted[3] },
+									{ x: daily_date[4], y: monthly_bhhoo_comment_posted[4] },
+									{ x: daily_date[5], y: monthly_bhhoo_comment_posted[5] },
+									{ x: daily_date[6], y: monthly_bhhoo_comment_posted[6] }
+								]
+							}]
+						});
+						var chart9 = new CanvasJS.Chart("chartContainer9", {
+							title: {
+								text: "Daily to yearly Discussion Posted"
+							},animationEnabled: true,
+							legend: {
+								cursor: "pointer",
+								itemclick: function (e) {
+									if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+										e.dataSeries.visible = false;
+									} else {
+										e.dataSeries.visible = true;
+									}
+
+									e.chart.render();
+								}
+							},
+							data: [{
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: daily_discussion_posted[0] },
+									{ x: daily_date[1], y: daily_discussion_posted[1] },
+									{ x: daily_date[2], y: daily_discussion_posted[2] },
+									{ x: daily_date[3], y: daily_discussion_posted[3] },
+									{ x: daily_date[4], y: daily_discussion_posted[4] },
+									{ x: daily_date[5], y: daily_discussion_posted[5] },
+									{ x: daily_date[6], y: daily_discussion_posted[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: weekly_discussion_posted[0] },
+									{ x: daily_date[1], y: weekly_discussion_posted[1] },
+									{ x: daily_date[2], y: weekly_discussion_posted[2] },
+									{ x: daily_date[3], y: weekly_discussion_posted[3] },
+									{ x: daily_date[4], y: weekly_discussion_posted[4] },
+									{ x: daily_date[5], y: weekly_discussion_posted[5] },
+									{ x: daily_date[6], y: weekly_discussion_posted[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: monthly_discussion_posted[0] },
+									{ x: daily_date[1], y: monthly_discussion_posted[1] },
+									{ x: daily_date[2], y: monthly_discussion_posted[2] },
+									{ x: daily_date[3], y: monthly_discussion_posted[3] },
+									{ x: daily_date[4], y: monthly_discussion_posted[4] },
+									{ x: daily_date[5], y: monthly_discussion_posted[5] },
+									{ x: daily_date[6], y: monthly_discussion_posted[6] }
+								]
+							}]
+						});
+						
+						var chart10 = new CanvasJS.Chart("chartContainer10", {
+							title: {
+								text: "Daily to yearly Discussion Comments Posted"
+							},animationEnabled: true,
+							legend: {
+								cursor: "pointer",
+								itemclick: function (e) {
+									if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+										e.dataSeries.visible = false;
+									} else {
+										e.dataSeries.visible = true;
+									}
+
+									e.chart.render();
+								}
+							},
+							data: [{
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: daily_discussion_comment_posted[0] },
+									{ x: daily_date[1], y: daily_discussion_comment_posted[1] },
+									{ x: daily_date[2], y: daily_discussion_comment_posted[2] },
+									{ x: daily_date[3], y: daily_discussion_comment_posted[3] },
+									{ x: daily_date[4], y: daily_discussion_comment_posted[4] },
+									{ x: daily_date[5], y: daily_discussion_comment_posted[5] },
+									{ x: daily_date[6], y: daily_discussion_comment_posted[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: weekly_discussion_comment_posted[0] },
+									{ x: daily_date[1], y: weekly_discussion_comment_posted[1] },
+									{ x: daily_date[2], y: weekly_discussion_comment_posted[2] },
+									{ x: daily_date[3], y: weekly_discussion_comment_posted[3] },
+									{ x: daily_date[4], y: weekly_discussion_comment_posted[4] },
+									{ x: daily_date[5], y: weekly_discussion_comment_posted[5] },
+									{ x: daily_date[6], y: weekly_discussion_comment_posted[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: monthly_discussion_comment_posted[0] },
+									{ x: daily_date[1], y: monthly_discussion_comment_posted[1] },
+									{ x: daily_date[2], y: monthly_discussion_comment_posted[2] },
+									{ x: daily_date[3], y: monthly_discussion_comment_posted[3] },
+									{ x: daily_date[4], y: monthly_discussion_comment_posted[4] },
+									{ x: daily_date[5], y: monthly_discussion_comment_posted[5] },
+									{ x: daily_date[6], y: monthly_discussion_comment_posted[6] }
+								]
+							}]
+						});
+						
+						var chart11 = new CanvasJS.Chart("chartContainer11", {
+							title: {
+								text: "Daily to yearly News Posted"
+							},animationEnabled: true,
+							legend: {
+								cursor: "pointer",
+								itemclick: function (e) {
+									if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+										e.dataSeries.visible = false;
+									} else {
+										e.dataSeries.visible = true;
+									}
+
+									e.chart.render();
+								}
+							},
+							data: [{
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: daily_news_posted[0] },
+									{ x: daily_date[1], y: daily_news_posted[1] },
+									{ x: daily_date[2], y: daily_news_posted[2] },
+									{ x: daily_date[3], y: daily_news_posted[3] },
+									{ x: daily_date[4], y: daily_news_posted[4] },
+									{ x: daily_date[5], y: daily_news_posted[5] },
+									{ x: daily_date[6], y: daily_news_posted[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: weekly_news_posted[0] },
+									{ x: daily_date[1], y: weekly_news_posted[1] },
+									{ x: daily_date[2], y: weekly_news_posted[2] },
+									{ x: daily_date[3], y: weekly_news_posted[3] },
+									{ x: daily_date[4], y: weekly_news_posted[4] },
+									{ x: daily_date[5], y: weekly_news_posted[5] },
+									{ x: daily_date[6], y: weekly_news_posted[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: monthly_news_posted[0] },
+									{ x: daily_date[1], y: monthly_news_posted[1] },
+									{ x: daily_date[2], y: monthly_news_posted[2] },
+									{ x: daily_date[3], y: monthly_news_posted[3] },
+									{ x: daily_date[4], y: monthly_news_posted[4] },
+									{ x: daily_date[5], y: monthly_news_posted[5] },
+									{ x: daily_date[6], y: monthly_news_posted[6] }
+								]
+							}]
+						});
+						
+						var chart12 = new CanvasJS.Chart("chartContainer12", {
+							title: {
+								text: "Daily to yearly Profile Searched"
+							},animationEnabled: true,
+							legend: {
+								cursor: "pointer",
+								itemclick: function (e) {
+									if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+										e.dataSeries.visible = false;
+									} else {
+										e.dataSeries.visible = true;
+									}
+
+									e.chart.render();
+								}
+							},
+							data: [{
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: daily_profile_searched[0] },
+									{ x: daily_date[1], y: daily_profile_searched[1] },
+									{ x: daily_date[2], y: daily_profile_searched[2] },
+									{ x: daily_date[3], y: daily_profile_searched[3] },
+									{ x: daily_date[4], y: daily_profile_searched[4] },
+									{ x: daily_date[5], y: daily_profile_searched[5] },
+									{ x: daily_date[6], y: daily_profile_searched[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: weekly_profile_searched[0] },
+									{ x: daily_date[1], y: weekly_profile_searched[1] },
+									{ x: daily_date[2], y: weekly_profile_searched[2] },
+									{ x: daily_date[3], y: weekly_profile_searched[3] },
+									{ x: daily_date[4], y: weekly_profile_searched[4] },
+									{ x: daily_date[5], y: weekly_profile_searched[5] },
+									{ x: daily_date[6], y: weekly_profile_searched[6] }
+								]
+							}, {
+								showInLegend: true,
+								type: "line",
+								xValueType: "dateTime",
+								dataPoints: [
+									{ x: daily_date[0], y: monthly_profile_searched[0] },
+									{ x: daily_date[1], y: monthly_profile_searched[1] },
+									{ x: daily_date[2], y: monthly_profile_searched[2] },
+									{ x: daily_date[3], y: monthly_profile_searched[3] },
+									{ x: daily_date[4], y: monthly_profile_searched[4] },
+									{ x: daily_date[5], y: monthly_profile_searched[5] },
+									{ x: daily_date[6], y: monthly_profile_searched[6] }
+								]
+							}]
+						});
+
+						chart1.render();
+						chart2.render();
+						chart3.render();
+						chart4.render();
+						chart5.render();
+						chart6.render();
+						chart7.render();
+						chart8.render();
+						chart9.render();
+						chart10.render();
+						chart11.render();
+						chart12.render();
+					});
+					//console.log("" +daily[0]);
+						
+				}
+			</script>
+		<script src="js/canvasjs.min.js"></script>
+	</head>
+	<body>
+		<header>
+		<!--Navigation-->
+			<div class=" navbar-fixed-top" id="navi">
+					<div class="container-fluid w3-hide-medium w3-hide-small w3-white w3-card-4" >
+						<div class="navbar-header">
+							<a href="logged.html" class="navbar-brand w3-xlarge"><b>Nexus</b></a>
+							</div>
+							<ul class="w3-content nav navbar-nav navbar-right" >	 
+							  <li><a href="#analytics" onclick="openLink(event,'analytics');" class="tablink w3-hover-text-grey" style="background:none;">Analytics</a></li> 
+							  <li><a href="#usertable" onclick="openLink(event,'usertable');edit();" class="tablink w3-hover-text-grey" style="background:none;">User Table</a></li> 
+							  <li><a href="#Setting" onclick="openLink(event,'setting');" class="tablink w3-hover-text-grey" style="background:none;">Settings</a></li>		  
+							  <li><a href="#Get Started" class="w3-hover-text-grey" style="background:none;">Get Started</a></li>				   
+								<li class="dropdown"><a href="#" class="dropdown-toggle w3-hover-text-grey" style="background: none;" data-toggle="dropdown">
+								<span class="fa fa-user-circle-o fa-2x " aria-hidden="false"></span></a>
+								<ul class="dropdown-menu">
+									
+									<li><a href="index.html">Logout   <span class="fa fa-sign-out fa-lg"></span></a></li>
+								</li>
+								</ul>
+							</ul>
+					
+					</div>
+					<div class="w3-container w3-top  w3-hide-large w3-white w3-xlarge w3-padding-12">
+						<span class="w3-left w3-padding"><b>Nexus</b></span>
+						<a href="javascript:void(0)" class="w3-right w3-btn w3-white" onclick="w3_ope()">☰</a>
+					</div>
+			</div>
+			<!--sidenav-->
+			<nav class="w3-sidenav w3-card-2 w3-top w3-hide-large w3-xlarge" style="display:none;z-index:3;width:160px;right: 0" id="mySidenav"><br>
+				  <div class="w3-container w3-padding-48 w3-padding-small">
+					  <a href="#home1" onclick="openLink(event,'home1');" class=" tablink w3-padding w3-hover-text-black w3-hover-white" style="font-size: 15px;">Home</a> 
+					  <a href="#analytics" onclick="openLink(event,'analytics');" class="tablink w3-padding  w3-hover-white " style="margin-top: 2px;font-size: 15px;">Analytics</a> 
+					  <a href="#usertable" onclick="openLink(event,'usertable');edit(); " onload="" class="tablink w3-padding w3-hover-white" style="margin-top: 2px;font-size: 15px;">User Table</a> 
+					  <a href="#Setting" onclick="openLink(event,'setting');" class="tablink w3-padding w3-hover-white" style="margin-top: 2px;font-size: 15px;">Settings</a>		  
+					  <a href="#Get Started" class="w3-padding w3-hover-white" style="margin-top: 2px;font-size: 15px;">Get Started</a><br><br>				  
+					  <a href="index.html" class="w3-padding w3-hover-white" style="font-size: 15px;">Log out <span class="fa fa-sign-out fa-lg"></span></a> 
+				  </div>
+				  
+			</nav>
+			
+			
+			
+		<!-- Top menu on small screens -->
+		
+
+			<!-- Overlay effect when opening sidenav on small screens -->
+		<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_clos()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+
+		</header>
+	<div class="w3-main" style="margin-top:47px;">
+		<!--home (features)-->
+			<div id="home1" class=" city w3-display-container w3-padding-15 w3-animate-left">
+				<div class="w3-display-container w3-card-4 w3-text-white " style="background: #264d73;Text-align: left;padding: 10%;">
+				<h3 class="w3-jumbo" >Let's Begin</h3>
+				 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><br>
+					<a href="#" class="w3-btn w3-padding-large w3-large w3-round w3-white  w3-hover-opacity-off">Get Started</a>
+				</div>
+									<div class="w3-white" style="width: 1800px;">
+
+					<img class="myimg" src="ana.png" style="float:right;margin-top:20px;margin-right: 500px;"></img>
+						<div class="w3-container w3-padding-12 " style="padding-left: 70px;padding-right: 400px;">
+								<div class="mydefault w3-justify col-md-8" >
+									<h3  class="w3-center" style="">Analytics made easy</h3>
+									<p style="font-weight: normal; font-align: normal;"> Get strorage results across all user on the app. Retentive time / active users, and other activity throughtoout the app. 
+									It will help you to understand the behavivour of people working in the organisation and make better decision.
+									</p>
+								</div>
+					
+						</div>
+						<div class="w3-container w3-light-grey w3-padding-12 " style="margin-top: 20px;padding-left: 70px;padding-right: 400px;">
+								<img class="myimg" src="ind7.png" style="width:200px;height:200px;float:left;margin-top:20px;margin-right: 70px;"></img>
+								<div class="mydefault w3-justify col-md-8">
+									<h3  class="w3-center" style="">Heirarchy maintained through the network</h3>
+									<p style="font-weight: normal; font-align: normal;">Heirarchy is maintained throughout the private network.. while giving freedom to the base user and 
+									also putting some user some kind of authority over the user base user.This can be done through providing Ids to the user.</p>
+								</div>&emsp;&emsp;
+						</div>						
+						<img class="myimg" src="ind2.png" style="width:200px;height:200px;float:right;margin-top:20px;margin-right: 550px;"></img>
+						<div class="w3-container w3-padding-16 " style="margin-top: 20px;padding-left: 70px;padding-right: 400px;">
+								<div class="mydefault w3-justify col-md-8">
+									<h3  class="w3-center" style="">Easy to use and implement in organisation</h3>
+									<p style="font-weight: normal; font-align: normal;">Registering for the private network is fast and fluent and doesn't take less than 5 minute and getting started with app also doesn't take less than 1 minute. 
+									It also doesn't require user education </p>
+								</div>&emsp;&emsp;
+						</div>
+						<div class="w3-container w3-light-grey w3-padding-16 " style="margin-top: 20px;padding-left: 70px;padding-right: 400px;">
+								<img class="myimg" src="ind4.png" style="width:200px;height:200px;float:left;margin-top:20px;margin-right: 70px;"></img>
+								<div class="mydefault w3-justify col-md-8">
+									<h3  class="w3-center" style="">Standard social media features</h3>
+									<p style="font-weight: normal; font-align: normal;color: grey;">Social media features provided in the app are standard and have been piched to ease the flow of social interaction
+									between the hierarchy of users. Some example like tweets, discussion, threads, News and chat. </p>
+								</div>&emsp;&emsp;
+						</div>
+						
+						<img class="myimg" src="ind1.png" style="width:300px;height:200px;float:right;margin-top:20px;margin-right: 550px;"></img>
+						<div class="w3-container w3-padding-16 " style="margin-top: 20px;padding-left: 70px;padding-right: 400px;">
+								<div class="mydefault w3-justify col-md-8">
+									<h3  class="w3-center" style="">Securing the private data </h3>
+									<p style="font-weight: normal; font-align: normal;">The data that is transfered through the other social media can be easily acquired and published on the other platforms.
+									This can be avoided by using Nexus which separate every organisation efficiently and secured.</p>
+								</div>&emsp;&emsp;
+						</div>
+						<div class="w3-container w3-light-grey w3-padding-16 " style="margin-top: 20px;padding-left: 70px;padding-right: 400px;">
+								<img class="myimg" src="ind9.png" style="width:300px;height:200px;float:left;margin-top:20px;margin-right: 70px;"></img>
+								<div class="mydefault w3-justify col-md-8">
+									<h3  class="w3-center" style="">Highly scalable </h3>
+									<p style="font-weight: normal; font-align: normal;color: grey;">Nexus is highly scalable and scale according to your need.It only require a single click in order to scale number of users can be manipulated efficiently </p>
+								</div>&emsp;&emsp;
+						</div><br><br><br>
+						
+							
+					</div>
+
+			</div>
+			
+			<!--Analytics-->
+			
+			<div id="analytics" class="city w3-animate-left" style="display:none;">
+			  <div class="container-fluid  w3-card-2 w3-padding-32 " style="height:10%; background:#d9e6f2; text-align:center;">
+				<img class="w3-center " style="width: 250px; height: 250px" src="ana.png"></img>
+				<h3>Duis aute irure dolor in reprehenderit</h3><div class=""> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+			  </div>
+				<div class="" style="margin: 50px 20px 50px 40px;float:right;width: 450px;">
+					<div id="chartContainer2" class="w3-display-container  w3-card-2" style="height: 400px; width: 450px;"></div>
+				</div>
+				<div  class="" style="margin: 50px 20px 50px 40px;width: 450px;">
+					<div id="chartContainer1" class="w3-display-container  w3-card-2" style="height: 400px; width: 450px;"></div>
+				</div>
+				<div class="" style="margin: 0px 20px 50px 40px;float:right;width: 450px;">
+					<div id="chartContainer3" class="w3-display-container  w3-card-2" style="height: 400px; width: 450px;"></div>
+				</div>
+				<div class="" style="margin: 50px 20px 50px 40px;width: 450px;">
+					<div id="chartContainer4" class="w3-display-container  w3-card-2" style="height: 400px; width: 450px;"></div>
+				</div>
+				<div class="" style="margin: 0px 20px 50px 40px;float:right;width: 450px;">
+					<div id="chartContainer5" class="w3-display-container  w3-card-2" style="height: 400px; width: 450px;"></div>
+				</div>
+				<div class="" style="margin: 50px 20px 50px 40px;width: 450px;">
+					<div id="chartContainer6" class="w3-display-container  w3-card-2" style="height: 400px; width: 450px;"></div>
+				</div>
+				<div class="" style="margin: 0px 20px 50px 40px;float:right;width: 450px;">
+					<div id="chartContainer7" class="w3-display-container  w3-card-2" style="height: 400px; width: 450px;"></div>
+				</div>
+				<div class="" style="margin: 50px 20px 50px 40px;width: 450px;">
+					<div id="chartContainer8" class="w3-display-container  w3-card-2" style="height: 400px; width: 450px;"></div>
+				</div>
+				<div class="" style="margin: 0px 20px 50px 40px;float:right;width: 450px;">
+					<div id="chartContainer9" class="w3-display-container  w3-card-2" style="height: 400px; width: 450px;"></div>
+				</div>
+				<div class="" style="margin: 50px 20px 50px 40px;width: 450px;">
+					<div id="chartContainer10" class="w3-display-container  w3-card-2" style="height: 400px; width: 450px;"></div>
+				</div>
+				<div class="" style="margin: 0px 20px 50px 40px;float:right;width: 450px;">
+					<div id="chartContainer11" class="w3-display-container  w3-card-2" style="height: 400px; width: 450px;"></div>
+				</div>
+				<div class="" style="margin: 50px 20px 50px 40px;width: 450px;">
+					<div id="chartContainer12" class="w3-display-container  w3-card-2" style="height: 400px; width: 450px;"></div>
+				</div>
+
+			
+			</div>
+			
+		    <div id="usertable" class="city w3-animate-left" style="display:none">
+			  <div class="container-fluid w3-card-2 w3-padding-48 " style="height:5%; background:#cccccc; text-align:center;">
+				<br><img class="w3-center " style="width: 185px; height: 180px"src="table3.png"></img>
+				<h3>User table</h3><div class="">You can edit, delete, ban your users from here and view your user.Lorem ipsum dolor sit amet, consectetur adipiscing elit, magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+			  </div>
+				<div class="container-fluid "  style="padding: 10%;padding-left:20%;">
+				<a href="#dvTable" class=" w3-btn w3-padding-medium w3-large w3-round w3-green  w3-hover-opacity-on " onclick="edit();" style="align:center;padding-left: 10px;padding-right: 10px;">Reload</a><br><br>
+					<div id="dvTable"  class="w3-table w3-centered w3-striped w3-card-2" style="width: auto;">
+					</div>
+					<!--Inside table is checked here-->
+					<div id = "in" class="container-fluid "  style="padding: auto; margin: 10%; display: none">
+						<nav class="navbar w3-card-2">
+							<ul class="nav navbar-nav ">
+								<li><a href="#BHOOO" class="w3-hover-light-grey" style="margin-left: 2px" onclick="openTab(event, 'BHOOO'); load_Pricing();">
+									<div class="tablink w3-padding" >BHOOO</div>
+								</a></li>
+								<li><a href="#Discussionthread" class="w3-hover-light-grey" style="margin-left: 2px" onclick="openTab(event, 'Discussionthread'); load_Ids();">
+									<div class="tablink w3-padding" style="">Discussion thread</div>
+								</a></li>
+								<li><a href="#Profile" class="w3-hover-light-grey" style="margin-left: 2px" onclick="openTab(event, 'Profile'); load_Ids();">
+									<div class="tablink w3-padding" style="">Profile</div>
+								</a></li>
+								<li><a href="#report" class="w3-hover-light-grey" onclick="openTab(event, 'report'); load_Detail();">
+									<div class="tablink w3-padding" style="">Report</div>
+								</a></li>
+								<li><a href="#strike" class="w3-hover-light-grey" style="margin-left: 2px" onclick="openTab(event, 'strike'); load_Ids();">
+									<div class="tablink w3-padding" style="">Strike</div>
+								</a></li>
+							</ul>
+						</nav>
+						<div id="BHOOO" class="cit container-fluid w3-padding-large w3-border w3-round "  style="margin: 10%;">
+
+						</div>
+						<div id="Discussionthread" class="cit w3-container" style="display:none">
+
+						</div>
+						<div id="Profile" class="cit w3-container" style="display:none">
+							<img id="p_pic"></img><br>
+							<div class="">
+								<label>Name</label>
+								<label id="p_name"></label>
+							</div>
+							<div class="">
+								<label>LinkedIn:</label>
+								<label id="p_LinkedIn"></label>
+							</div>
+							<div class="">
+								<label>Job discription</label><br>
+								<label id="p_job"></label><br>
+							</div>
+							<div class="">
+								<label>Bio</label>
+								<label id="p_bio"></label>
+							</div>
+							<div class="">
+								<label>Phone no.</label>
+								<label id="p_phone"></label>
+							</div>
+							<div class="">
+								<label>Email</label>
+								<label id="p_email"></label>
+							</div>
+						</div>
+						<div id="report" class="cit w3-container" style="display:none">
+
+						</div>
+						<div id="strike" class="cit w3-container" style="display:none">
+
+						</div>
+						<!--<div id="strike_in" class="cit w3-container" style="display:none">
+                        <div class="">
+                            <label>Name</label>
+                            <label></label>
+                        </div>
+                        <div class="">
+                            <label>Date</label>
+                            <label></label>
+                        </div>
+                        <div class="">
+                            <label>Discription</label>
+                            <label></label>
+                        </div>
+                        </div>
+                        <div id="discussion_in" class="cit w3-container" style="display:none">
+                        <div class="">
+                            <label>Name</label>
+                            <label></label>
+                        </div>
+                        <div class="">
+                            <label>Date</label>
+                            <label></label>
+                        </div>
+                        <div class="">
+                            <label>Discription</label>
+                            <label></label>
+                        </div>
+                        </div>
+                        <div id="BHOOO_in" class="cit w3-container" style="display:none">
+                        <div class="">
+                            <label>Name</label>
+                            <label></label>
+                        </div>
+                        <div class="">
+                            <label>Date</label>
+                            <label></label>
+                        </div>
+                        <div class="">
+                            <label>Discription</label>
+                            <label></label>
+                        </div>
+                        </div>
+                        <div id="report_in" class="cit w3-container" style="display:none">
+                        <div class="">
+                            <label>Name</label>
+                            <label></label>
+                        </div>
+                        <div class="">
+                            <label>Date</label>
+                            <label></label>
+                        </div>
+                        <div class="">
+                            <label>Discription</label>
+                            <label></label>
+                        </div>
+                        <div class="">
+                            <label>Category</label>
+                            <label></label>
+                        </div>
+                        </div>
+                        -->
+
+					</div>
+				</div>
+			</div>
+
+		<div id="setting" class="city w3-animate-left" style="display:none">
+			  <div class="container-fluid w3-blue-grey w3-card-2 w3-padding-48 " style="height:5%;  text-align:center;">
+				<br><img class="w3-center " style="width: 185px; height: 180px" src="settings.png"></img>
+				<h3>Settings</h3><div class="">You can edit, delete, ban your users from here and view your user.Lorem ipsum dolor sit amet, consectetur adipiscing elit, magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+			  </div>
+				<div class="container-fluid "  style="padding: auto; margin: 10%;">
+					<nav class="navbar w3-card-2">
+						<ul class="nav navbar-nav ">
+							<li><a href="#details_tab" class="w3-hover-light-grey" onclick="openTab(event, 'details_tab'); load_Detail();">
+							  <div class="tablink w3-padding" style="">Details</div>
+							</a></li>
+							<li><a href="#price_tab" class="w3-hover-light-grey" style="margin-left: 2px" onclick="openTab(event, 'price_tab'); load_Pricing();">
+							  <div class="tablink w3-padding" >Pricing</div>
+							</a></li>
+							<li><a href="#Id_tab" class="w3-hover-light-grey" style="margin-left: 2px" onclick="openTab(event, 'Id_tab'); load_Ids();">
+							  <div class="tablink w3-padding" style="">Change Ids</div>
+							</a></li>
+						</ul>
+					</nav>
+						<div id="details_tab" class="cit container-fluid w3-padding-large w3-border w3-round "  style="margin: 10%;">
+							<div class="form-group1">
+								<label class="col-md-4">Institute Name: </label>
+								<label class="col-lg-4" id = "inst_name"></label>
+							</div><br>
+							<div class="form-group1">
+								<label class="col-md-4">Institute Email: </label>
+								<input class="col-lg-4" type = "text" id = "inst_email">
+							</div><br>
+							<div class="form-group1">
+								<label class="col-md-4">Institute Contact: </label>
+								<input class="col-lg-4"type = "tel" id = "inst_contact">
+							</div><br>
+							<div class="form-group1">
+								<label class="col-md-4">Institute type: </label>
+								<select class="col-lg-4"id ="org" name="org" id= "inst_type" required>
+								  <option value="Private">Private</option>
+								  <option value="Education">Education</option>
+								  <option value="Medical">Medical</option>
+								  <option value="Government">Government</option>
+								  <option value="Startup">Startup</option>
+								  <option value="IT">IT</option>
+								  <option value="Bank">Bank</option>
+								</select>
+							</div><br>
+							<div class="form-group1">
+								<label  class="col-md-4">Country: </label>
+								<label  class="col-lg-4" id="countryl" name ="countryl"></label>
+							</div><br>
+							<div class="form-group1">
+								<label  class="col-md-4">State: </label>
+								<label  class="col-lg-4" name ="statel" id ="statel"></label>
+							</div><br>
+							<div class="form-group1">
+								<label  class="col-md-4">Admin Email: </label>
+								<input  class="col-lg-4" type = "text" id = "inst_ad_email">
+							</div><br>
+							<div class="form-group1">
+								<label class="col-md-4">Admin Contact: </label>
+								<input class="col-lg-4" type = "tel" id = "inst_ad_contact">
+							</div><br><br><br>
+							<div>
+								<button class = "w3-btn w3-padding-medium w3-large w3-round w3-green  w3-hover-opacity-on " onclick = "detail_change();">Accept</button>
+								<button class = "w3-btn w3-padding-medium w3-large w3-round w3-red  w3-hover-opacity-on ">Cancel</button>
+							</div><br>
+						</div>
+						<div id="price_tab" class="cit w3-container" style="display:none">
+							<div class="w3-row-padding" style="margin:0 -16px" >
+								  <div class="w3-third w3-margin-bottom">
+									<ul class="w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow" id = "trail">
+									  <li class="w3-black w3-xlarge w3-padding-32">Trial</li>
+									  <li class="w3-padding-16">Upto 1000 users</li>
+									  <li class="w3-padding-16">Photography</li>
+									  <li class="w3-padding-16">
+										<h2>$ 0</h2>
+										<span class="w3-opacity">per month</span>
+									  </li>
+									  <li class="w3-light-grey w3-padding-24">
+										<button id = "L" class="w3-btn w3-white w3-padding-large w3-hover-black" onclick = "pricing_change(this);">Get it</button>
+									  </li>
+									</ul>
+								  </div>
+							<div class="w3-row-padding" style="margin:0 -16px" >
+								  <div class="w3-third w3-margin-bottom">
+									<ul class="w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow" id = "medium">
+									  <li class="w3-black w3-xlarge w3-padding-32">Medium</li>
+									  <li class="w3-padding-16">Upto 1000 users</li>
+									  <li class="w3-padding-16">Photography</li>
+									  <li class="w3-padding-16">
+										<h2>$ 25</h2>
+										<span class="w3-opacity">per month</span>
+									  </li>
+									  <li class="w3-light-grey w3-padding-24">
+										<button id = "M" class="w3-btn w3-white w3-padding-large w3-hover-black" onclick = "pricing_change(this);">Get it</button>
+									  </li>
+									</ul>
+								  </div>
+								<div class="w3-row-padding " style="margin:0 -16px" >
+								  <div class="w3-third w3-margin-bottom">
+									<ul class="w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow" id = "large">
+									  <li class="w3-black w3-xlarge w3-padding-32 ">large</li>
+									  <li class="w3-padding-16">User can be altered</li>
+									  <li class="w3-padding-16">Mail Support</li>
+									  <li class="w3-padding-16">
+										<h2>$ 50</h2>
+										<span class="w3-opacity">per month</span>
+									  </li>
+									  <li class="w3-light-grey w3-padding-24">
+										<button id = "H" class="w3-btn w3-white w3-padding-large w3-hover-black" onclick = "pricing_change(this);">Get it</button>
+									  </li>
+									</ul>
+								  </div>
+								</div>
+							</div>
+						</div>
+				</div>
+				
+				<div id="Id_tab" class="cit container-fluid w3-border w3-round w3-padding-large"  style="margin: 10%; display:none; ">
+					<div class="form-group1">
+						<label  class="col-md-4">Institute ID:</label>
+						<input  class="col-lg-4" type = "text" id = "inst_id">
+					</div><br>
+					<div class="form-group1">
+						<label class="col-md-4">Admin ID:</label>
+						<input  class="col-lg-4" type = "text" id = "admin_id">
+					</div><br>
+					<div class="form-group1">
+						<label class="col-md-4">King ID: </label>
+						<input  class="col-lg-4" type = "text" id = "king_id">
+					</div><br>
+					<div class="form-group1">
+						<label class="col-md-4">Veteran ID: </label>
+						<input class="col-lg-4"type = "text" id = "veteran_id">
+					</div><br>
+					<div class="form-group1">
+						<label class="col-md-4">Base ID: </label>
+						<input class="col-lg-4" type = "text" id = "base_id">
+					</div><br><br><br>
+					<div>
+						<button class = "w3-btn w3-padding-medium w3-large w3-round w3-green  w3-hover-opacity-on " onclick = "id_change();">Accept</button>
+						<button class = "w3-btn w3-padding-medium w3-large w3-round w3-red  w3-hover-opacity-on ">Cancel</button>
+					</div>
+				</div>
+			
+			</div>
+		
+		
+		</div>
+		<footer class="w3-container w3-light-grey w3-padding-large" style="">
+			<div class="" style="font-size:30px;float:left;padding-top:50px;padding-left: 50px;">
+				<strong>NEXUS</strong><br>
+			</div>
+			<ul class="" style="float:left;padding-top: 20px;padding-left:150px;padding-right: 150px;font-weight:normal; list-style-type:none; font-size:15px; background:none;">
+				<li class="w3-padding-4"><a href="#about" class="w3-text-grey" style="text-decoration:none;background: none;" >About</a></li>
+				<li class="w3-padding-4"><a href="#features_home" class="w3-text-grey " style="text-decoration:none;background: none;" >Careers</a></li>
+				<li class="w3-padding-4"><a href="#tour_home" class="w3-text-grey " style="text-decoration:none;background: none;" >Terms</a></li>
+				<li class="w3-padding-4"><a href="#pricing_home" class="w3-text-grey" style="text-decoration:none;background: none;" >Privacy</a></li>
+			</ul>
+			<ul class=" " style="font-weight:normal;padding-top: 20px; list-style-type:none; font-size:15px; background:none;">
+				<li class="w3-padding-4"><a href="index.html" class="w3-text-grey" style="text-decoration:none;background: none;" >Home</a></li>
+				<li class="w3-padding-4"><a href="#features_home" class="w3-text-grey " style="text-decoration:none;padding-top: 2px;background: none;" >Features</a></li>
+				<li class="w3-padding-4"><a href="#tour_home" class="w3-text-grey " style="text-decoration:none;background: none;" >Tour</a></li>
+				<li class="w3-padding-4"><a href="#pricing_home" class="w3-text-grey" style="text-decoration:none;background: none;" >Pricing</a></li>
+			</ul>
+			<div class="w3-right w3-large">
+				  <i class="fa fa-facebook-official fa-lg w3-hover-text-indigo"></i>
+				  <i class="fa fa-youtube fa-lg w3-hover-text-red"></i>
+				  <i class="fa fa-twitter fa-lg w3-hover-text-light-blue"></i>
+				  <i class="fa fa-linkedin fa-lg w3-hover-text-indigo"></i>
+				
+			</div>
+			
+		</footer>
+
+
+    </div>
+
+		<script>
+		
+		$("#details_tab").ready(function(){
+			load_Detail();
+		});
+		
+		function load_Detail(){
+			var ab= firebase.database().ref().child("Admin").child("Institude").child("Detail").child(first);
+			
+			ab.on('value', function(snapshot) {
+				//console.log(JSON.stringify(snapshot.value()));
+				if(snapshot.val() !== null){
+					document.getElementById("inst_name").innerHTML = snapshot.val().instituteName;
+					document.getElementById("inst_email").value = snapshot.val().institudeEmail;
+					document.getElementById("inst_contact").value = snapshot.val().institudeContact;
+					document.getElementById("org").value = snapshot.val().institudeType;
+					document.getElementById("countryl").innerHTML = snapshot.val().institudeCountry;
+					document.getElementById("statel").innerHTML = snapshot.val().institudeState;
+					console.log(snapshot.val().institudeState);
+					document.getElementById("inst_ad_email").value = snapshot.val().adminEmail;
+					document.getElementById("inst_ad_contact").value = snapshot.val().adminContact;
+				}else{
+					console.log("not found");
+				}
+			});	
+		}
+		
+		function detail_change(){
+			var ab= firebase.database().ref().child("Admin").child("Institude").child("Detail").child(first);
+			
+			ab.update({
+				institudeEmail : document.getElementById("inst_email").value,
+				institudeContact : document.getElementById("inst_contact").value,
+				inst_type : document.getElementById("org").value,
+				adminEmail : document.getElementById("inst_ad_email").value, 
+				adminContact : document.getElementById("inst_ad_contact").value
+			});
+		}
+		
+		function load_Ids(){
+			var ab= firebase.database().ref().child("Admin").child("Institude").child("Ids").child(first);
+			
+			ab.on('value', function(snapshot) {
+				//console.log(JSON.stringify(snapshot.value()));
+				if(snapshot.val() !== null){
+					document.getElementById("inst_id").value = snapshot.val().institudeId;
+					document.getElementById("admin_id").value = snapshot.val().adminId;
+					document.getElementById("king_id").value = snapshot.val().hId;
+					document.getElementById("veteran_id").value = snapshot.val().mId;
+					document.getElementById("base_id").value = snapshot.val().lId;
+				}else{
+					console.log("not found");
+				}
+			});	
+		}
+		
+		function id_change(){
+			var ab= firebase.database().ref().child("Admin").child("Institude").child("Ids").child(first);
+			
+			ab.update({
+				institudeId : document.getElementById("inst_id").value,
+				adminId : document.getElementById("admin_id").value,
+				hId : document.getElementById("king_id").value,
+				mId : document.getElementById("veteran_id").value,
+				lId : document.getElementById("base_id").value
+			});
+		}
+		
+		function load_Pricing(){
+			var ab= firebase.database().ref().child("Admin").child("Institude").child("Ids").child(first);
+			
+			ab.on('value', function(snapshot) {
+				//console.log(JSON.stringify(snapshot.value()));
+				if(snapshot.val() !== null){
+					if(snapshot.val().plan == "H"){
+						document.getElementById("trail").className = "w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow";
+						document.getElementById("medium").className = "w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow";
+						document.getElementById("large").className = "w3-ul w3-white w3-center w3-hover-opacity-off w3-card-2 w3-shadow";
+						trail_active = false;
+						medium_active = false;
+						large_active = true;
+					} else if(snapshot.val().plan == "M"){
+						document.getElementById("trail").className = "w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow";
+						document.getElementById("medium").className = "w3-ul w3-white w3-center w3-hover-opacity-off w3-card-2 w3-shadow";
+						document.getElementById("large").className = "w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow";
+						trail_active = false;
+						medium_active = true;
+						large_active = false;
+					} else if(snapshot.val().plan == "L"){
+						document.getElementById("trail").className = "w3-ul w3-white w3-center w3-hover-opacity-off w3-card-2 w3-shadow";
+						document.getElementById("medium").className = "w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow";
+						document.getElementById("large").className = "w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow";
+						trail_active = true;
+						medium_active = false;
+						large_active = false;
+					}
+				}else{
+					console.log("not found");
+				}
+			});	
+		}
+		
+		function pricing_change(id_p){
+			var ab= firebase.database().ref().child("Admin").child("Institude").child("Ids").child(first);
+			var plan_c;
+			if(id_p.id == "H"){
+					plan_c = "H";
+					document.getElementById("trail").className = "w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow";
+					document.getElementById("medium").className = "w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow";
+					document.getElementById("large").className = "w3-ul w3-white w3-center w3-hover-opacity-off w3-card-2 w3-shadow";
+				} else if(id_p.id == "M"){
+					plan_c = "M";
+					document.getElementById("trail").className = "w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow";
+					document.getElementById("medium").className = "w3-ul w3-white w3-center w3-hover-opacity-off w3-card-2 w3-shadow";
+					document.getElementById("large").className = "w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow";
+				} else if(id_p.id == "L"){
+					plan_c = "L"; 
+					document.getElementById("trail").className = "w3-ul w3-white w3-center w3-hover-opacity-off w3-card-2 w3-shadow";
+					document.getElementById("medium").className = "w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow";
+					document.getElementById("large").className = "w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow";			
+				}
+			
+			ab.update({
+					plan : plan_c
+			});
+		}
+		
+		function edit(){
+		
+			var institudeId = sessionStorage.getItem("InstituteId");
+			var roleId = sessionStorage.getItem("RoleId");
+			var customers = new Array();
+			customers.push(["Index", "Unique ID", "Name", "Status", "Current Feature",  "TimeUsed", "Reports", "Strikes", "Banned"]);
+			var table = document.createElement("TABLE");
+			var jam = 1;
+			var ref_1 = firebase.database();
+			var ab= ref_1.ref().child(first).child("Admin").child("Usertable");
+			
+			  ab.once('value', function(snapshot) {
+			  snapshot.forEach(function(childSnapshot) {
+				var childData_status = childSnapshot.val().status;
+				var childData_timeUsed = childSnapshot.val().totalTimeUsed;
+				var childData_report = childSnapshot.val().report;
+				var y = document.createElement("a");
+				var d = y.innerHTML = childSnapshot.val().name;
+				var childData_name = d;
+				if(childSnapshot.val().currentFeature != null){
+					var childData_currentFeature = childSnapshot.val().currentFeature;
+				}else{
+					childData_currentFeature = "Inactive";
+				}
+				var childData_id = childSnapshot.val().uniqueId;
+				var childData_banned = childSnapshot.val().banned;
+				var childData_report = childSnapshot.val().report;
+				var childData_strikes = childSnapshot.val().strikes;
+
+				if(childData_banned == true)
+					var but = '<input type="button" class = "w3-btn w3-padding-medium w3-large w3-round w3-red  w3-hover-opacity-on " value = "' + childData_banned +'">';
+				else
+                    var but = '<input type="button" class = "w3-btn w3-padding-medium w3-large w3-round w3-green  w3-hover-opacity-on " value = "' + childData_banned +'">';
+				var strike = '<input type="button" class = "w3-btn w3-padding-medium w3-large w3-round w3-gray  w3-hover-opacity-on " value = "' + childData_strikes +'">';
+				var report = '<input type="button" class = "w3-btn w3-padding-medium w3-large w3-round w3-gray  w3-hover-opacity-on " value = "' + childData_report +'">';
+				var srno = '<p onclick = "det(this)" id = "' + childData_id + '">' + jam+ '</p>';
+				var id = '<p onclick = "det(this)" id = "' + childData_id + '">' + childData_id+ '</p>';
+				var name = '<p onclick = "det(this)" id = "' + childData_id + '">' + childData_name+ '</p>';
+				var status = '<p onclick = "det(this)" id = "' + childData_id + '">' + childData_status+ '</p>';
+				var feature = '<p onclick = "det(this)" id = "' + childData_id + '">' + childData_currentFeature+ '</p>';
+				var timeused = '<p onclick = "det(this)" id = "' + childData_id + '">' + childData_timeUsed+ '</p>';
+
+				customers.push([srno, id, name, status, feature, timeused, report,
+								strike, but]);
+				jam = jam+1;
+				 });
+
+				var columnCount = customers[0].length;
+			 
+				var row = table.insertRow(-1);
+
+				for (var i = 0; i < columnCount; i++) {
+					var headerCell = document.createElement("TH");
+					headerCell.style.background="#cccccc"
+					headerCell.innerHTML = customers[0][i];
+					row.appendChild(headerCell);
+				}
+			 
+				for (var i = 1; i < customers.length; i++) {
+					row = table.insertRow(-1);
+					for (var j = 0; j < columnCount; j++) {
+						var cell = row.insertCell(-1);
+						cell.innerHTML = customers[i][j];
+					}
+				}
+			 
+				var dvTable = document.getElementById("dvTable");
+				dvTable.innerHTML = "";
+				dvTable.appendChild(table);
+			});
+		}
+
+        function det(val) {
+		    var id = val.id;
+		    document.getElementById("dvTable").style.display = "none";
+		    document.getElementById("in").style.display = "block";
+            //var userId = firebase.auth().currentUser.uid;
+            return firebase.database().ref().child(first).child("User").child("Detail").child(id).once('value').then(function(snapshot) {
+                var name = snapshot.val().name;
+                var bio = snapshot.val().bio;
+                var email = snapshot.val().email;
+                var gender = snapshot.val().gender;
+                var imageLocation = snapshot.val().imageLocation;
+                var job = snapshot.val().job;
+                var linkedIn = snapshot.val().linkedIn;
+                var phoneNo = snapshot.val().phoneNo;
+                var timestamp = snapshot.val().timestamp;
+
+            });
+            console.log(val.id);
+        }
+		</script>
+		
+		<script>
+		//populateCountries("countryl", "statel")
+	</script>
+		
+		</body>
+
+	</body>
+</html>

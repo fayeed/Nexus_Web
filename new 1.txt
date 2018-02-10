@@ -1,0 +1,238 @@
+<DOCTYPE! html>
+<html>
+	<head>
+		<title>Sign Up </title>
+	<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/font-awesome.css">
+		<link rel="stylesheet" href="css/w3.css">
+		<link rel="stylesheet" href="mystyle.css">
+		<script src="js/jquery.js"></script> 
+		<script src="js/bootstrap.js"></script>
+		<script src="my.js"></script>
+	</head>
+	
+	<style>
+	body  {
+				background-image: url('backgroun_signup.png');
+				background-attachment: fixed;
+			}
+		
+		.form-group{
+		font-family: arial;
+			width: 600px;
+			margin: 0 auto;
+			padding: 20px;
+			box-sizing:border-box;
+		margin: 25px 0;
+		}
+		
+		.form-group label{
+			font-size: 18px;
+		}
+		
+		.form-group input{
+		width: 100%;
+		display: block;
+		padding: 10px;
+		box-sizing:border-box;
+		}
+	</style>
+	<body>
+	<header>
+		<div class=" navbar-fixed-top" >
+					<div class="container-fluid w3-white w3-card-4" >
+						<div class="navbar-header">
+							<!--<div class="w3-closenav w3-left w3-hover-text-grey"  onclick="w3_close()"><span class="fa fa-bars fa-2x"></span></div>-->
+							<a href="#" class="navbar-brand w3-xlarge"  style="padding-left:10%;"><b>Nexus</b></a>
+						</div>
+						<ul class="nav navbar-nav navbar-right" style="padding-right: 4%;">
+							<li><a href="features1.html" class="w3-hover-text-grey" style="background: none;" id="feature">Features</a></li>
+							<li><a href="tour1.html" class="w3-hover-text-grey" style="background: none;">Tour</a></li>
+							<li><a href="pricing1.html" class="w3-hover-text-grey" style="background: none;">Pricing</a></li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle w3-hover-text-grey" style="background: none;" data-toggle="dropdown">
+							<li class="w3-opennav" onclick="w3_open()" id="openNav"><span class="fa fa-bars fa-2x "></span> </li><ul>
+							<nav class="w3-sidenav w3-white w3-card-4 w3-padding-48 " style="margin-left: 0;display:none" id="mySidenav">
+								  <a href="javascript:void(0)" 
+								  onclick="w3_close()"
+								  class="w3-closenav w3-large w3-hover-text-grey" style="padding-bottom: 50px;background: none;">Close &times;</a>
+								  <a href="index.html" class="w3-hover-text-grey w3-padding-8" style="padding-top: 50px;background: none;" >Home</a>
+								  <a href="#" class="w3-hover-text-grey w3-padding-8" style="padding-top: 50px;background: none;" >Features</a>
+								  <a href="#" class="w3-hover-text-grey w3-padding-8" style="background: none;" >Tour</a>
+								  <a href="#" class="w3-hover-text-grey w3-padding-8" style="background: none;" >Pricing</a>
+								  <hr>
+								  <a href="#signup" class="w3-hover-text-grey w3-padding-8" data-toggle="modal" data-backdrop="static" data-keyboard="false"style="background: none;" >Sign Up</a>
+								  <a href="#sign" class="w3-hover-text-grey w3-padding-8" data-toggle="modal" data-keyboard="false" style="background: none;" >Sign In</a>
+							</nav>
+							<!--<ul class="dropdown-menu">
+								<li><a href="#sign" data-toggle="modal">Sign In</a></li>
+								<li class="divider"></li>
+								<li><a href="#signup" data-toggle="modal" data-backdrop="static" data-keyboard="false">Sign Up</a></li>
+							</li>
+							</ul>-->
+						</ul>
+					</div>
+			
+		</div>
+	</header>
+
+	<div class="w3-container w3-padding-24" style="margin-top: 15%;margin-left: 20%;margin-right: 20%;background:  #fff ;">
+					<nav class="navbar w3-card-2">
+						<ul class="nav navbar-nav ">
+							<li><a href="#form_sign" class="w3-hover-light-grey" onclick="openSign(event, 'form_sign');">
+							  <div class="link w3-padding" style="">Register</div>
+							</a></li>
+							<li><a href="#detail_sign" class=" w3-hover-light-grey" style="margin-left: 2px" onclick="openSign(event, 'detail_sign');">
+							  <div class="link w3-padding" >Details</div>
+							</a></li>
+							<li><a href="#Ids_sign" class=" w3-hover-light-grey" style="margin-left: 2px" onclick="openSign(event, 'Ids_sign');">
+							  <div class="link w3-padding" style="">Generated Ids</div>
+							</a></li>
+							<li><a href="#price_sign" class=" w3-hover-light-grey" style="margin-left: 2px" onclick="openSign(event, 'price_sign');">
+							  <div class="link w3-padding" style="">Pricing</div>
+							</a></li>
+						</ul>
+					</nav>
+	  <div id="form_sign" class="ci w3-container"> 
+				<p style="text-align: right; color: grey;">Step 1 of 4</p><br>
+		<h2 class="w3-center" style="padding-top: 10%">Get Started by filling your details</h2><br>
+		<form target="_blank">
+			<div class="form-group">
+				<label for="name">Name of Organisation * </label>
+				<input type="text" id="name" required >
+			</div>
+				<div class="form-group">
+				<label for="contact">Contact Number *</label>
+				<input type="number" min=1 max=11 id="user-name">
+			</div>
+			<div class="form-group">
+				<label for="org">Type of Organisation *</label>
+				<input list="org" required>
+				<datalist id="org">
+				 <option>College</option>
+				 <option>College</option>
+				 <option>College</option>
+				</datalist>
+			</div>
+			<div class="form-group">
+				<label for="org">Select your country </label>
+				<input list="country" required>
+				<datalist id="country">
+				 <option>india</option>
+				</datalist>
+			</div>
+			<div class="form-group">
+				<label for="email">E-mail </label>
+				<input type="email" id="user-name" required>
+			</div>
+			<div class="form-group">
+				<a href="#" class=" w3-btn w3-padding-medium w3-large w3-round w3-green  w3-hover-opacity-on " style="align:left;padding-left: 10px;padding-right: 10px;" onclick="open_detail_tab();" type="" value="" id="user-name">Proceed</a>
+			</div>
+		</form>
+	  </div>
+
+		
+		<div id="detail_sign" class="ci w3-display-container  w3-padding-large "  style="display: none;">
+					<hr class="w3-hr">
+					<p style="text-align: right; color: grey;">Step 2 of 4</p>
+					<h2 class="w3-center" style="padding-top: 10%">Your details</h2><br>
+					<pre style="border: none;background: none;">Institute Name      : Polytechnic</pre><br>
+					<pre style="border: none;background: none;">Organisation Type   : Ploythechnic</pre><br>
+					<pre style="border: none;background: none;">Contact No          : 5024242424</pre><br>
+					<pre style="border: none;background: none;">E-mail              : poly@gmail.com</pre><br>
+					<a href="#" class=" w3-btn w3-padding-medium w3-large w3-round w3-green  w3-hover-opacity-on " style="align:left;padding-left: 10px;padding-right: 10px;" onclick="open_IDs_tab();">Proceed</a>
+		</div>
+		
+		<div id="Ids_sign" class="ci w3-display-container  w3-padding-large "  style="display: none;">
+					<hr class="w3-hr">
+					<p style="text-align: right; color: grey;">Step 3 of 4</p>
+					<h2 class="w3-center" style="padding-top: 10%">Your Ids has been generated</h2><br>
+					<pre align="center" style="border: none;background: none;">Institute Id  : 4242424</pre><br>
+					<pre align="center" style="border: none;background: none;">Role Id       : 4234242</pre><br>
+					<pre align="center" style="border: none;background: none;">H_id          : 1313123</pre><br>
+					<pre align="center" style="border: none;background: none;">L_id          : 1331313</pre><br>
+					<a href="#" class=" w3-btn w3-padding-medium w3-large w3-round w3-green  w3-hover-opacity-on " style="align:left;padding-left: 10px;padding-right: 10px;" onclick="open_price_tab();">Proceed</a>
+		</div>
+		
+		<div id="price_sign" class="ci w3-container w3-padding-large" style="display:none;">
+				<hr class="w3-hr">
+				<p style="text-align: right; color: grey;">Step 4 of 4</p>
+				<h2 class="w3-center" style="padding-top: 10%">select your plan</h2><br>
+				<div class="w3-third w3-margin-bottom">
+					<ul class="w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow">
+					  <li class="w3-black w3-xlarge w3-padding-32">Trial</li>
+					  <li class="w3-padding-16">Upto 1000 users</li>
+					  <li class="w3-padding-16">Photography</li>
+					  <li class="w3-padding-16">
+						<h2>$ 0</h2>
+						<span class="w3-opacity">per month</span>
+					  </li>
+					  <li class="w3-light-grey w3-padding-24">
+						<button class="w3-btn w3-white w3-padding-large w3-hover-black">Get it</button>
+					  </li>
+					</ul>
+				</div>
+			
+			<div class="w3-row-padding" style="margin:0 -16px" >
+				  <div class="w3-third w3-margin-bottom">
+					<ul class="w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow">
+					  <li class="w3-black w3-xlarge w3-padding-32">Large</li>
+					  <li class="w3-padding-16">Upto 1000 users</li>
+					  <li class="w3-padding-16">Photography</li>
+					  <li class="w3-padding-16">
+						<h2>$ 25</h2>
+						<span class="w3-opacity">per month</span>
+					  </li>
+					  <li class="w3-light-grey w3-padding-24">
+						<button class="w3-btn w3-white w3-padding-large w3-hover-black">Get it</button>
+					  </li>
+					</ul>
+				  </div>
+				<div class="w3-row-padding " style="margin:0 -16px" >
+				  <div class="w3-third w3-margin-bottom">
+					<ul class="w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off w3-card-2 w3-hover-shadow">
+					  <li class="w3-black w3-xlarge w3-padding-32 ">Tailored</li>
+					  <li class="w3-padding-16">User can be altered</li>
+					  <li class="w3-padding-16">Mail Support</li>
+					  <li class="w3-padding-16">
+						<h2>$ 50</h2>
+						<span class="w3-opacity">per month</span>
+					  </li>
+					  <li class="w3-light-grey w3-padding-24">
+						<button class="w3-btn w3-white w3-padding-large w3-hover-black">Get it</button>
+					  </li>
+					</ul>
+				  </div>
+				</div>
+			</div><br>
+			<a href="logged.html" class=" w3-btn w3-padding-medium w3-large w3-round w3-green  w3-hover-opacity-on " style="align:left;padding-left: 10px;padding-right: 10px;">Done</a>
+		</div>
+	
+	</div>
+		<!--Sign In(modal)-->
+			<div class="container">
+				<div class="modal fade" id="sign">
+					<div class="modal-dialog">
+						<div class="modal-content">
+						<div class="modal-header">
+							<h4 align="center">Sign In<div class="close" data-dismiss="modal">&times;</div></h4>
+							<div class="modal-body">
+								<form  name="form1"  method="post">
+									<p><input class="w3-input w3-padding-10 w3-border"  type="text"  name="user" value="Mustakeem" required></p><br>
+									<p><input class="w3-input w3-padding-10 w3-border"  type="password"  name="pass" value="mustakeem" required></p><br>
+									<p align="center"><input class="w3-btn w3-padding-large w3-large w3-round w3-#cccccc w3-opacity w3-hover-opacity-off " type="submit" value="Sign In" onclick="validate();"></h4></p>
+							  </form>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>	
+		
+		<script>
+			
+		
+	</script>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<DOCTYPE! html>
+<html>
+	<head>
+		<title>Nexus</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/font-awesome.css">
+		<link rel="stylesheet" href="css/w3.css">
+		<link rel="stylesheet" href="mystyle.css">
+		<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+		<script src="js/jquery.js"></script> 
+
+		<script src="js/bootstrap.js"></script>
+		<script src="my.js"></script>
+		
+	</head>
+	<script>
+        var s = window.location.search;
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+        var first = getUrlVars()["user"];
+        var second = getUrlVars()["pass"];
+        $( document ).ready(function() {
+            console.log( "ready!" );
+            setTimeout(function(){
+                window.location.href = "logged.html?user=" + first + "&pass=" + second;
+            }, 2000);
+        });
+	</script>
+	<body  >
+	<div class="w3-main" style="margin-left:0;margin-top:47px;">
+			<div class="w3-container w3-center w3-large">
+			<strong style="font-size: 50px">Registeration successful!</strong><br>
+			You will be redirected to nigga Enterprises.
+			<div>
+	</div>
+	</body>
+</html>
